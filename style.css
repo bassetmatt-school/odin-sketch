@@ -1,7 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
 .flex-v, .flex-h {
     display: flex;
 }
 
 .flex-v {
     flex-direction: column;
+}
+
+.cell {
+    border: 1px solid black;
+    width: 64px;
+    height: 64px;
+}
+
+.cell-top {
+    border-top-width: 2px;
+}
+
+.cell-bottom {
+    border-bottom-width: 2px;
+}
+
+.cell-left {
+    border-left-width: 2px;
+}
+
+.cell-right {
+    border-right-width: 2px;
 }
