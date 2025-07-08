@@ -1,4 +1,7 @@
 // DOM Stuff
+function onHover(cell) {
+    cell.classList.add("hovered");
+}
 
 function additionalClasses(n, i, j, cell) {
     if (i === 0) {
@@ -26,8 +29,14 @@ function createLine(n, i) {
         cell.id = `cell-${n * i + j}`;
         cell = additionalClasses(n, i, j, cell);
         // DEBUG
-        cell.textContent = `${n * i + j}`;
-
+        // cell.textContent = `${n * i + j}`;
+        cell.addEventListener("mouseover", (e) => {
+            onHover(e.target)
+        })
+        // Ensure padding-bottom works
+        let cell_cont = document.createElement("div")
+        cell_cont.classList.add("cell-cont");
+        cell.appendChild(cell_cont);
         line.appendChild(cell);
     }
     return line;
