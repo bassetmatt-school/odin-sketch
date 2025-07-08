@@ -1,4 +1,3 @@
-// DOM Stuff
 function onHover(cell) {
     cell.classList.add("hovered");
 }
@@ -16,7 +15,6 @@ function additionalClasses(n, i, j, cell) {
     if (j === n - 1) {
         cell.classList.add("cell-right");
     }
-    return cell
 }
 
 function createLine(n, i) {
@@ -27,24 +25,24 @@ function createLine(n, i) {
         let cell = document.createElement("div");
         cell.classList.add("cell");
         cell.id = `cell-${n * i + j}`;
-        cell = additionalClasses(n, i, j, cell);
+        // Adds classes for cells on the border of the grid
+        additionalClasses(n, i, j, cell);
+
         // DEBUG
         // cell.textContent = `${n * i + j}`;
         cell.addEventListener("mouseover", (e) => {
             onHover(e.target)
-        })
-        // Ensure padding-bottom works
-        let cell_cont = document.createElement("div")
-        cell_cont.classList.add("cell-cont");
-        cell.appendChild(cell_cont);
+        });
+
         line.appendChild(cell);
     }
     return line;
 }
 
 function createGrid(n) {
-    if (!Number.isInteger(n) || n <= 0) {
+    if (!Number.isInteger(n) || n <= 0 || n > 100) {
         alert(`Wrong n: ${n}`);
+        createGrid(16);
         throw new Error("Given unappropriate grid size!");
     }
     const container = document.querySelector("#main-container");
@@ -54,10 +52,37 @@ function createGrid(n) {
     }
 }
 
-function onLoad() {
-    const n = 16;
-    createGrid(n);
-    console.log(`Created a ${n}x${n} grid!`);
+function resetGrid() {
+    let grid = document.querySelector("#main-container");
+    document
+        .querySelectorAll(".line")
+        .forEach((elt) => {
+            grid.removeChild(elt);
+        });
 }
 
-onLoad()
+let SIZE = 16
+
+function onLoad() {
+    createGrid(SIZE);
+    console.log(`Created a ${SIZE}x${SIZE} grid!`);
+
+    document
+        .querySelector("#size-change")
+        .addEventListener("click", (e) => {
+            SIZE = Number.parseInt(
+                prompt("New Grid Size? [1-100]", "16")
+            )
+            resetGrid()
+            createGrid(SIZE)
+        });
+
+    document
+        .querySelector("#reset")
+        .addEventListener("click", (e) => {
+            resetGrid()
+            createGrid(SIZE)
+        })
+}
+
+onLoad();

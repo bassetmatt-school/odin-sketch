@@ -1,10 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Roboto:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+* {
+    font-family: Roboto, sans-serif;
+}
+
 body {
     margin: 0;
 }
 
+#header {
+    height: 48px;
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d7d7d7;
+    margin-bottom: 8px;
+}
+
+.links {
+    width: 20%;
+    padding: 8px 32px;
+    font-size: 16px;
+}
+
+#links-r {
+    text-align: right;
+}
+
+#title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+#grid {
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
 #main-container {
-    max-width: 960px;
-    max-height: 960px;
+    min-width: 720px;
+    min-height: 720px;
 }
 
 .flex-v, .flex-h {
@@ -15,10 +51,25 @@ body {
     flex-direction: column;
 }
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: gray;
+}
+
+.line {
+    justify-content: center;
+    height: 10%;
+}
+
 .cell {
-    border: .5px solid black;
-    width: 5%;
-    padding-bottom: 5%;
+    border: .5px solid gray;
+    width: 10%;
 }
 
 .cell-top {
