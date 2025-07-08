@@ -1,5 +1,24 @@
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 function onHover(cell) {
-    cell.classList.add("hovered");
+    if (!Array.from(cell.classList).includes("hovered")) {
+        cell.classList.add("hovered");
+        cell.style.opacity = "1";
+
+        if (document.querySelector("#colors").checked) {
+            hue = getRandomInt(360);
+            cell.style["background-color"] = `hsl(${hue}, 50%, 50%)`;
+        } else {
+            cell.style["background-color"] = "gray";
+        }
+    }
+    if (document.querySelector("#opacity").checked) {
+        let op = cell.style.opacity;
+        op = Number.parseFloat(op) - 0.1;
+        cell.style.opacity = op;
+    }
 }
 
 function additionalClasses(n, i, j, cell) {
